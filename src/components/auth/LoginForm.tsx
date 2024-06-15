@@ -18,12 +18,14 @@ import Social from "./Social";
 import { LoginSchema } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Login } from "@/lib/actions/auth";
+import { Label } from "../ui/label";
 
 const LoginForm = () => {
   const [showTwoFactor, setShowTwoFactor] = useState(false);
 
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
+  const [showPassword, setShowPassword] = useState(false);
   const [isPending, startTransition] = useTransition();
 
   const form = useForm({
@@ -54,9 +56,14 @@ const LoginForm = () => {
   };
   return (
     <div>
-      <div className="flex flex-col items-center justify-center p-12 gap-6 border-2 rounded-xl">
-        {/* <h1 className="text-xl">Welcome Back</h1> */}
-        <div className="flex flex-col w-[400px] gap-6">
+      <div className="flex flex-col items-center justify-center p-6 md:p-12 gap-6 border-2 rounded-xl">
+        <div className="flex items-center justify-center flex-col ">
+          <h1 className="text-xl">Welcome Back !</h1>
+          <p className="text-secondary-foreground/80 text-sm">
+            Please enter your details
+          </p>
+        </div>
+        <div className="flex flex-col  w-[300px] md:w-[400px] gap-6">
           <Form {...form}>
             <form
               className="flex flex-col items-start justify-center gap-4"
@@ -112,10 +119,18 @@ const LoginForm = () => {
                             <Input
                               {...field}
                               placeholder="password"
-                              type="password"
+                              type={showPassword ? "text" : "password"}
                               disabled={isPending}
                             ></Input>
                           </FormControl>
+                          <div className="flex items-start justify-start gap-2">
+                            <Input
+                              type="checkbox"
+                              onClick={() => setShowPassword(!showPassword)}
+                              className="w-4 h-4"
+                            />
+                            <Label>show password</Label>
+                          </div>
                           <Button
                             size="sm"
                             variant="link"
@@ -131,6 +146,7 @@ const LoginForm = () => {
                   </>
                 )}
               </div>
+
               <Button
                 type="submit"
                 className="w-full flex items-center justify-center gap-2"

@@ -48,9 +48,9 @@ export default function RegisterForm() {
 
   return (
     <div>
-      <div className="flex flex-col items-center justify-center p-12 gap-6 border-2 rounded-xl">
+      <div className="flex flex-col items-center justify-center p-6 md:p-12 gap-6 border-2 rounded-xl">
         <h1 className="text-xl">Create an account</h1>
-        <div className="flex flex-col w-[400px] gap-6">
+        <div className="flex flex-col w-[300px] md:w-[400px] gap-6">
           <Form {...form}>
             <form
               className="flex flex-col items-start justify-center gap-4"
@@ -106,25 +106,26 @@ export default function RegisterForm() {
                           disabled={isPending}
                         ></Input>
                       </FormControl>
+                      <div className="flex items-start justify-start gap-2">
+                        <Input
+                          type="checkbox"
+                          onClick={() => setShowPassword(!showPassword)}
+                          className="w-4 h-4"
+                        />
+                        <Label>show password</Label>
+                      </div>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
               </div>
-              <div className="flex items-center justify-center gap-2">
-                <Input
-                  type="checkbox"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="w-4 h-4"
-                />
-                <Label>show password?</Label>
-              </div>
+
               <Button
                 type="submit"
                 className="w-full flex items-center justify-center gap-2"
                 disabled={isPending}
               >
-                Sign Up
+                Register
               </Button>
             </form>
           </Form>
