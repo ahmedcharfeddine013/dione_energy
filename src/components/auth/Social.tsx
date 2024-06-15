@@ -20,13 +20,13 @@ const Social = () => {
         {" "}
         <GoogleIcon fontSize="small" />
       </Button>
-      <Button
+      {/* <Button
         className="w-full flex items-center justify-center"
         // onClick={() => onClick("github")}
       >
         {" "}
         <GithubIcon fontSize="small" />
-      </Button>
+      </Button> */}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 "use client";
 
+import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -14,6 +15,9 @@ import Link from "next/link";
 import React, { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import Social from "./Social";
+import { LoginSchema } from "@/lib/validations";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Login } from "@/lib/actions/auth";
 
 const LoginForm = () => {
   const [showTwoFactor, setShowTwoFactor] = useState(false);
@@ -23,38 +27,35 @@ const LoginForm = () => {
   const [isPending, startTransition] = useTransition();
 
   const form = useForm({
-    // resolver: zodResolver(LoginSchema),
+    resolver: zodResolver(LoginSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
 
-  const onSubmit = () => {
+  const onSubmit = (values: z.infer<typeof LoginSchema>) => {
     setError("");
     setSuccess("");
     startTransition(() => {
-      //   login(values)
-      //     .then((data) => {
-      //       if (data?.error) {
-      //         form.reset();
-      //         setError(data.error);
-      //       }
-      //       if (data?.success) {
-      //         form.reset();
-      //         setSuccess(data.success);
-      //       }
-      //       if (data?.twoFactor) {
-      //         setShowTwoFactor(true);
-      //       }
-      //     })
-      //     .catch(() => setError("Something went wrong!"));
+      Login(values)
+        .then((data) => {
+          if (data?.error) {
+            form.reset();
+            setError(data.error);
+          }
+          if (data?.success) {
+            form.reset();
+            setSuccess(data.success);
+          }
+        })
+        .catch(() => setError("Something went wrong!"));
     });
   };
   return (
     <div>
       <div className="flex flex-col items-center justify-center p-12 gap-6 border-2 rounded-xl">
-        <h1 className="text-xl">Welcome Back</h1>
+        {/* <h1 className="text-xl">Welcome Back</h1> */}
         <div className="flex flex-col w-[400px] gap-6">
           <Form {...form}>
             <form
@@ -156,7 +157,7 @@ const LoginForm = () => {
             Policy
           </div>
           <Link
-            href="../auth/register"
+            href="/auth/sign-up"
             className="px-8 text-center text-sm text-muted-foreground hover:underline"
           >
             Don&apos;t have an account?
