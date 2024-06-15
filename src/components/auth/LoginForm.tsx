@@ -13,6 +13,7 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import React, { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
+import Social from "./Social";
 
 const LoginForm = () => {
   const [showTwoFactor, setShowTwoFactor] = useState(false);
@@ -147,7 +148,9 @@ const LoginForm = () => {
               </span>
             </div>
           </div>
-
+          <div>
+            <Social />
+          </div>
           <div className="px-8 text-center text-sm text-muted-foreground">
             By clicking continue, you agree to our Terms Of Service and Privacy
             Policy
