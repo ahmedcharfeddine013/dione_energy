@@ -9,19 +9,32 @@ import { chatbotMessages, default_avatar } from "@/constants";
 import Image from "next/image";
 
 const ChatBot = () => {
+  
   const [opened, setOpened] = useState(false);
 
   useEffect(() => {
     if (opened) {
-      gsap.to("#chatbot-container", {
-        opacity: 1,
-        duration: 0.5,
-      });
+      gsap.fromTo(
+        "#chatbot-container",
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+          duration: 0.5,
+        }
+      );
     } else {
-      gsap.to("#chatbot-container", {
-        opacity: 0,
-        duration: 0.5,
-      });
+      gsap.fromTo(
+        "#chatbot-container",
+        {
+          opacity: 1,
+        },
+        {
+          opacity: 0,
+          duration: 0.5,
+        }
+      );
     }
   }, [opened]);
 
