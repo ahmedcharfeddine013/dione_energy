@@ -9,6 +9,7 @@ import { chatbotMessages, default_avatar } from "@/constants";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import { v4 as uuidv4 } from "uuid";
+import { chatbotResponse } from "@/lib/actions/chat/chat";
 
 const ChatBot = () => {
   const [opened, setOpened] = useState(false);
@@ -49,6 +50,21 @@ const ChatBot = () => {
       });
       console.log(userInput);
       setUserInput("");
+      let botResponse = "";
+      if (userInput.toLowerCase() === "hello") {
+        botResponse = "Hi customer!";
+      }
+
+      if (botResponse) {
+        setTimeout(() => {
+          chatbotMessages.push({
+            id: uuidv4(),
+            user: "chatbot",
+            message: botResponse,
+          });
+          console.log(chatbotMessages);
+        }, 1000);
+      }
     }
   };
 
