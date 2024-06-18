@@ -7,10 +7,12 @@ import { Input } from "../ui/input";
 import { SendHorizontal } from "lucide-react";
 import { chatbotMessages, default_avatar } from "@/constants";
 import Image from "next/image";
+import { ChevronDown } from "lucide-react";
+import { v4 as uuidv4 } from "uuid";
 
 const ChatBot = () => {
-  
   const [opened, setOpened] = useState(false);
+  const [userInput, setUserInput] = useState<string>();
 
   useEffect(() => {
     if (opened) {
@@ -38,6 +40,18 @@ const ChatBot = () => {
     }
   }, [opened]);
 
+  const sendUserMessage = () => {
+    if (userInput) {
+      chatbotMessages.push({
+        id: uuidv4(),
+        user: "User",
+        message: userInput,
+      });
+      console.log(userInput);
+      setUserInput("");
+    }
+  };
+
   return (
     <>
       <div
@@ -46,7 +60,7 @@ const ChatBot = () => {
           setOpened(!opened);
         }}
       >
-        <ChatBubbleIcon />
+        {opened ? <ChevronDown /> : <ChatBubbleIcon />}
       </div>
       <div
         id="chatbot-container"
@@ -90,8 +104,14 @@ const ChatBot = () => {
             ))}
           </div>
           <div className="flex items-center justify-center gap-3">
-            <Input className="bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-2 rounded-lg border-primary" />
-            <SendHorizontal className="text-primary hover:scale-125 transition-all duration-100 ease-in cursor-pointer" />
+            <Input
+              onChange={(e) => setUserInput(e.target.value)}
+              className="bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-2 rounded-lg border-primary"
+            />
+            <SendHorizontal
+              onClick={sendUserMessage}
+              className="text-primary hover:scale-125 transition-all duration-100 ease-in cursor-pointer"
+            />
           </div>
         </div>
       </div>
