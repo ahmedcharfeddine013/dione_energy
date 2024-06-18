@@ -14,59 +14,93 @@ import { chatbotResponse } from "@/lib/actions/chat/chat";
 const ChatBot = () => {
   const [opened, setOpened] = useState(false);
   const [userInput, setUserInput] = useState<string>();
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [messages, setMessages] = useState(chatbotMessages);
 
   useEffect(() => {
     if (opened) {
       gsap.fromTo(
         "#chatbot-container",
-        {
-          opacity: 0,
-        },
-        {
-          opacity: 1,
-          duration: 0.5,
-        }
+        { opacity: 0 },
+        { opacity: 1, duration: 0.5 }
       );
     } else {
       gsap.fromTo(
         "#chatbot-container",
-        {
-          opacity: 1,
-        },
-        {
-          opacity: 0,
-          duration: 0.5,
-        }
+        { opacity: 1 },
+        { opacity: 0, duration: 0.5 }
       );
     }
   }, [opened]);
 
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   const sendUserMessage = () => {
     if (userInput) {
-      chatbotMessages.push({
-        id: uuidv4(),
-        user: "User",
-        message: userInput,
-      });
+      const newMessages = [
+        ...messages,
+        {
+          id: uuidv4(),
+          user: "User",
+          message: userInput,
+        },
+      ];
+      setMessages(newMessages);
       console.log(userInput);
       setUserInput("");
-      let botResponse = "";
-      if (userInput.toLowerCase() === "hello") {
-        botResponse = "Hi customer!";
-      }
+
+      const botResponse = chatbotResponse(userInput);
+      console.log(botResponse);
 
       if (botResponse) {
         setTimeout(() => {
-          chatbotMessages.push({
-            id: uuidv4(),
-            user: "chatbot",
-            message: botResponse,
-          });
+          setMessages((prevMessages) => [
+            ...prevMessages,
+            {
+              id: uuidv4(),
+              user: "chatbot",
+              message: botResponse,
+            },
+          ]);
           console.log(chatbotMessages);
-        }, 1000);
+        }, 1000); // 1 second delay for the typing animation
       }
     }
   };
+
+  // const sendUserMessage = () => {
+  //   if (userInput) {
+  //     chatbotMessages.push({
+  //       id: uuidv4(),
+  //       user: "User",
+  //       message: userInput,
+  //     });
+  //     console.log(userInput);
+  //     setUserInput("");
+  //     let botResponse = chatbotResponse(userInput);
+  //     // if (userInput.toLowerCase() === "hello") {
+  //     //   botResponse = "Hi customer!";
+  //     // }
+  //     console.log(botResponse);
+
+  //     if (botResponse) {
+  //       // setTimeout(() => {
+  //       chatbotMessages.push({
+  //         id: uuidv4(),
+  //         user: "chatbot",
+  //         message: botResponse,
+  //       });
+  //       console.log(chatbotMessages);
+  //       // }, 1000);
+  //     }
+  //   }
+  // };
 
   return (
     <>
@@ -89,8 +123,8 @@ const ChatBot = () => {
           <p>customer service</p>
         </div>
         <div className="p-4 text-gray-900">
-          <div className="mb-4 flex flex-col gap-3 w-full">
-            {chatbotMessages.map((msg) => (
+          <div className="mb-4 flex flex-col gap-3 w-full max-h-[300px]  overflow-y-scroll">
+            {messages.map((msg) => (
               <div key={msg.id}>
                 {msg.user == "chatbot" ? (
                   <div className="flex w-full items-start justify-start">
@@ -118,10 +152,12 @@ const ChatBot = () => {
                 )}
               </div>
             ))}
+            <div ref={messagesEndRef}></div>
           </div>
-          <div className="flex items-center justify-center gap-3">
+          <div className=" flex items-center justify-center gap-3">
             <Input
               onChange={(e) => setUserInput(e.target.value)}
+              value={userInput || ""}
               className="bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-2 rounded-lg border-primary"
             />
             <SendHorizontal
