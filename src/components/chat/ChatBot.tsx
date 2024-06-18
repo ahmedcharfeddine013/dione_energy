@@ -3,9 +3,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import { Input } from "../ui/input";
 import { SendHorizontal } from "lucide-react";
+import { chatbotMessages } from "@/constants";
 
 const ChatBot = () => {
   const [opened, setOpened] = useState(false);
@@ -45,10 +45,26 @@ const ChatBot = () => {
           <p>customer service</p>
         </div>
         <div className="p-4 text-gray-900">
-          <div className="mb-4">
-            <div className="p-3 bg-gray-300 rounded-lg">
-              <p>hi</p>
-            </div>
+          <div className="mb-4 flex flex-col gap-3 w-full">
+            {chatbotMessages.map((msg) => (
+              <div
+                key={msg.id}
+                className={`flex w-full items-center ${
+                  msg.user == "chatbot" ? " justify-start" : "justify-end"
+                }`}
+              >
+                <div
+                  // key={msg.id}
+                  className={`p-3  rounded-lg flex ${
+                    msg.user == "chatbot"
+                      ? " bg-gray-300 w-fit max-w-[70%] "
+                      : "w-fit max-w-[70%] bg-primary text-white"
+                  } `}
+                >
+                  <p>{msg.message}</p>
+                </div>
+              </div>
+            ))}
           </div>
           <div className="flex items-center justify-center gap-3">
             <Input className="bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-2 rounded-lg border-primary" />
