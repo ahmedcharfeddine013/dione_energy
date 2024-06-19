@@ -17,8 +17,9 @@ import { useForm } from "react-hook-form";
 import Social from "./Social";
 import { LoginSchema } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Login } from "@/lib/actions/auth";
+// import { Login } from "@/lib/actions/auth";
 import { Label } from "../ui/label";
+import { useAuth } from "@/context/AuthContext";
 
 const LoginForm = () => {
   const [showTwoFactor, setShowTwoFactor] = useState(false);
@@ -27,6 +28,8 @@ const LoginForm = () => {
   const [success, setSuccess] = useState<string | undefined>("");
   const [showPassword, setShowPassword] = useState(false);
   const [isPending, startTransition] = useTransition();
+
+  const { login } = useAuth();
 
   const form = useForm({
     resolver: zodResolver(LoginSchema),
@@ -40,18 +43,18 @@ const LoginForm = () => {
     setError("");
     setSuccess("");
     startTransition(() => {
-      Login(values)
-        .then((data) => {
-          if (data?.error) {
-            form.reset();
-            setError(data.error);
-          }
-          if (data?.success) {
-            form.reset();
-            setSuccess(data.success);
-          }
-        })
-        .catch(() => setError("Something went wrong!"));
+      // Login(values)
+      //   .then((data) => {
+      //     if (data?.error) {
+      //       form.reset();
+      //       setError(data.error);
+      //     }
+      //     if (data?.success) {
+      //       form.reset();
+      //       setSuccess(data.success);
+      //     }
+      //   })
+      //   .catch(() => setError("Something went wrong!"));
     });
   };
   return (
@@ -67,7 +70,7 @@ const LoginForm = () => {
           <Form {...form}>
             <form
               className="flex flex-col items-start justify-center gap-4"
-              onSubmit={form.handleSubmit(onSubmit)}
+              onSubmit={form.handleSubmit(login)}
             >
               <div className="flex flex-col items-start justify-center gap-4 w-full">
                 {showTwoFactor && (

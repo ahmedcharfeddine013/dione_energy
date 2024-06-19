@@ -74,34 +74,6 @@ const ChatBot = () => {
     }
   };
 
-  // const sendUserMessage = () => {
-  //   if (userInput) {
-  //     chatbotMessages.push({
-  //       id: uuidv4(),
-  //       user: "User",
-  //       message: userInput,
-  //     });
-  //     console.log(userInput);
-  //     setUserInput("");
-  //     let botResponse = chatbotResponse(userInput);
-  //     // if (userInput.toLowerCase() === "hello") {
-  //     //   botResponse = "Hi customer!";
-  //     // }
-  //     console.log(botResponse);
-
-  //     if (botResponse) {
-  //       // setTimeout(() => {
-  //       chatbotMessages.push({
-  //         id: uuidv4(),
-  //         user: "chatbot",
-  //         message: botResponse,
-  //       });
-  //       console.log(chatbotMessages);
-  //       // }, 1000);
-  //     }
-  //   }
-  // };
-
   return (
     <>
       <div
