@@ -1,11 +1,21 @@
+"use client";
+
+import { logo } from "@/constants";
 import Image from "next/image";
 import React from "react";
-import logo from "../../../../public/l.png";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 const AboutPage = () => {
+  useGSAP(() => {
+    gsap.to("#logo_sidebanner", {
+      opacity: 1,
+      duration: 0.5,
+    });
+  }, []);
   return (
-    <div className="grid grid-cols-2">
-      <div className=" font-light text-md ">
+    <div className="grid grid-cols-1 md:grid-cols-2">
+      <div className="font-extralight text-sm">
         <p>
           We propose the development of a Solar State Prediction System designed
           to maximize energy production and optimize energy sales for users.
@@ -20,7 +30,7 @@ const AboutPage = () => {
         <p className="text-lg my-1 font-bold text-orange-500 ">
           User with Installed Solar Panels:
         </p>
-        <p>
+        <p className="flex flex-col">
           Consider a user who has installed solar panels and is part of the
           Solar State Prediction System. This user is interested in optimizing
           their energy consumption to reduce costs and earn incentives. <br />
@@ -56,7 +66,7 @@ const AboutPage = () => {
         <p className="text-lg my-1 font-bold text-orange-500 ">
           User without Installed Solar Panels:
         </p>
-        <p>
+        <p className="flex flex-col">
           Consider a user who has not yet installed solar panels but is part of
           the Solar State Prediction System. This user is interested in
           optimizing their energy consumption to reduce costs and earn
@@ -103,8 +113,11 @@ const AboutPage = () => {
           predicted solar generation.
         </p>
       </div>
-      <div className="fixed right-20 top-40">
-        <Image src={logo} alt="logo" height={600} width={600} />
+      <div
+        id="logo_sidebanner"
+        className="fixed hidden md:block md:right-24 md:top-40 opacity-0"
+      >
+        <Image src={logo} alt="logo" height={500} width={500} />
       </div>
     </div>
   );

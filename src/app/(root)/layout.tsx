@@ -1,28 +1,19 @@
 "use client";
 
 import ChatBot from "@/components/chat/ChatBot";
+import Footer from "@/components/footer/Footer";
 import Navbar from "@/components/navbar/Navbar";
-import { useAuth } from "@/context/AuthContext";
-import { useRouter } from "next/navigation";
-import React, { ReactNode, useEffect } from "react";
+import React, { ReactNode } from "react";
 
 const UserLayout = ({ children }: { children: ReactNode }) => {
-  const { isAuthenticated } = useAuth();
-  const router = useRouter();
-
-  // useEffect(() => {
-  //   if (!isAuthenticated) {
-  //     router.push("/auth/sign-in");
-  //   }
-  // }, [isAuthenticated, router]);
-
   return (
     <div>
       <Navbar />
-      <div className="p-24">{children}</div>
+      <div className="py-24 px-10 lg:p-24">{children}</div>
       <div>
         <ChatBot />
       </div>
+      <Footer />
     </div>
   );
 };

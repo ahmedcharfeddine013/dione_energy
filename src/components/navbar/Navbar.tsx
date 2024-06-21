@@ -2,13 +2,25 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import Image from "next/image";
-import logo from "../../../public/l.png";
+import { logo } from "@/constants";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  useGSAP(() => {
+    gsap.to("#navbar", {
+      opacity: 1,
+      y: 0,
+    });
+  }, []);
+
   return (
-    <nav className="bg-background fixed top-0 w-full text-white p-4">
+    <nav
+      id="navbar"
+      className="bg-background fixed top-0 -translate-y-10 opacity-0 w-full text-white p-4"
+    >
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center space-x-12">
           <div className="text-2xl font-bold">
