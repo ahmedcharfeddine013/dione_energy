@@ -5,9 +5,12 @@ import Image from "next/image";
 import { logo } from "@/constants";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { useAuth } from "@/context/AuthContext";
+import { Avatar } from "@mui/material";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { isAuthenticated } = useAuth();
 
   useGSAP(() => {
     gsap.to("#navbar", {
@@ -67,17 +70,23 @@ const Navbar = () => {
             </Link>
           </div>
         </div>
-        <div className="flex items-center space-x-4">
-          <Button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
-            <span className="text-2xl">☰</span>
-          </Button>
-          <Button className="bg-white text-primary hover:bg-gray-300 px-4 py-2 hidden md:block">
-            <Link href={"/auth/sign-in"}>Login</Link>
-          </Button>
-          <Button className="px-4 py-2 hidden md:block">
-            <Link href={"/auth/sign-up"}>Sign up</Link>
-          </Button>
-        </div>
+        {isAuthenticated ? (
+          <Link href={"/dashboard"}>
+            <Avatar></Avatar>
+          </Link>
+        ) : (
+          <div className="flex items-center space-x-4">
+            <Button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
+              <span className="text-2xl">☰</span>
+            </Button>
+            <Button className="bg-white text-primary hover:bg-gray-300 px-4 py-2 hidden md:block">
+              <Link href={"/auth/sign-in"}>Login</Link>
+            </Button>
+            <Button className="px-4 py-2 hidden md:block">
+              <Link href={"/auth/sign-up"}>Sign up</Link>
+            </Button>
+          </div>
+        )}
       </div>
       {isOpen && (
         <div className="md:hidden mt-4 bg-background rounded-lg shadow-lg">
@@ -113,14 +122,20 @@ const Navbar = () => {
               Blog
             </Link>
           </div>
-          <div className="flex flex-col space-y-2 p-4 border-t border-gray-700">
-            <Button className="bg-white text-primary hover:bg-gray-300 px-4 py-2  md:block">
-              <Link href={"/auth/sign-in"}>Login</Link>
-            </Button>
-            <Button className="px-4 py-2  md:block">
-              <Link href={"/auth/sign-up"}>Sign up</Link>
-            </Button>
-          </div>
+          {isAuthenticated ? (
+            <Link href={"/dashboard"}>
+              <Avatar></Avatar>
+            </Link>
+          ) : (
+            <div className="flex flex-col space-y-2 p-4 border-t border-gray-700">
+              <Button className="bg-white text-primary hover:bg-gray-300 px-4 py-2  md:block">
+                <Link href={"/auth/sign-in"}>Login</Link>
+              </Button>
+              <Button className="px-4 py-2  md:block">
+                <Link href={"/auth/sign-up"}>Sign up</Link>
+              </Button>
+            </div>
+          )}
         </div>
       )}
     </nav>

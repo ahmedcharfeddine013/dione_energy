@@ -14,7 +14,7 @@ const AboutPage = () => {
     });
   }, []);
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 relative">
+    <div className="grid grid-cols-1 md:grid-cols-2 py-24 px-10 lg:p-24">
       <div className="text-sm font-[200]">
         <p>
           We propose the development of a Solar State Prediction System designed

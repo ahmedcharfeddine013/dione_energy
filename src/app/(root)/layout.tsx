@@ -9,7 +9,7 @@ const UserLayout = ({ children }: { children: ReactNode }) => {
   return (
     <div>
       <Navbar />
-      <div className="py-24 px-10 lg:p-24">{children}</div>
+      <div>{children}</div>
       <div>
         <ChatBot />
       </div>
