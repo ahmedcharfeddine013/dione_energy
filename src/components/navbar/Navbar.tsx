@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Button } from "../ui/button";
+import Image from "next/image";
+import logo from "../../../public/l.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,7 +12,15 @@ const Navbar = () => {
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center space-x-12">
           <div className="text-2xl font-bold">
-            <Link href="/">Dione</Link>
+            <Link href="/">
+              <Image
+                src={logo}
+                alt="Logo"
+                height={80}
+                width={80}
+                className="hover:scale-110 duration-100 transition-all ease-in"
+              />
+            </Link>
           </div>
           <div className="hidden md:flex space-x-4">
             <Link
@@ -24,6 +34,12 @@ const Navbar = () => {
               className="text-white/80 hover:text-white duration-100 transition-all ease-in text-sm"
             >
               Pricing
+            </Link>
+            <Link
+              href="/blog"
+              className="text-white/80 hover:text-white duration-100 transition-all ease-in text-sm"
+            >
+              Energyhive
             </Link>
             <Link
               href="/blog"
@@ -59,6 +75,12 @@ const Navbar = () => {
               className="hover:bg-gray-700 p-2 rounded text-sm"
             >
               Pricing
+            </Link>
+            <Link
+              href="/blog"
+              className="hover:bg-gray-700 p-2 rounded text-sm"
+            >
+              Energyhive
             </Link>
             <Link
               href="/blog"
