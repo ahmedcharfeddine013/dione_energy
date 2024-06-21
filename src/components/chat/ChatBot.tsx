@@ -77,7 +77,7 @@ const ChatBot = () => {
   return (
     <>
       <div
-        className="p-3 bg-primary w-fit rounded-full cursor-pointer hover:scale-110 duration-100 transition-all ease-in absolute bottom-8 right-8"
+        className="p-3 bg-primary w-fit rounded-full cursor-pointer hover:scale-110 duration-100 transition-all ease-in fixed bottom-8 right-8"
         onClick={() => {
           setOpened(!opened);
         }}
@@ -86,7 +86,7 @@ const ChatBot = () => {
       </div>
       <div
         id="chatbot-container"
-        className={`bg-secondary-foreground rounded-xl overflow-hidden w-[400px] opacity-0 absolute bottom-24 right-8 ${
+        className={`bg-secondary-foreground rounded-xl overflow-hidden w-[400px] opacity-0 fixed bottom-24 right-8 ${
           opened ? "block" : "hidden"
         }`}
       >
