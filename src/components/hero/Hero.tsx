@@ -21,9 +21,9 @@ const Hero = () => {
   return (
     <section>
       <div className="relative h-screen overflow-hidden">
-        <div className=" absolute -z-50 left-0 top-0">
+        <div className=" absolute -z-50 left-0 top-0 h-full w-full">
           <video
-            className="pointer-events-none"
+            className="pointer-events-none h-full w-full object-cover "
             autoPlay
             muted
             playsInline
@@ -37,7 +37,7 @@ const Hero = () => {
             id="slogon"
             className="font-bold mx-20 border-2 p-3 rounded-lg bg-gray-800/60 opacity-0 translate-y-20 "
           >
-            <h1 className="text-6xl text-center">
+            <h1 className="text-4xl md:text-6xl text-center">
               <span className="text-primary">Energyhive: </span>
               Innovating Today for a Sustainable Tomorrow.
             </h1>
