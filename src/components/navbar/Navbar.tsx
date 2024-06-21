@@ -36,7 +36,7 @@ const Navbar = () => {
               Pricing
             </Link>
             <Link
-              href="/blog"
+              href="/about"
               className="text-white/80 hover:text-white duration-100 transition-all ease-in text-sm"
             >
               Energyhive
@@ -77,7 +77,7 @@ const Navbar = () => {
               Pricing
             </Link>
             <Link
-              href="/blog"
+              href="/about"
               className="hover:bg-gray-700 p-2 rounded text-sm"
             >
               Energyhive

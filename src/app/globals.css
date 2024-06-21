@@ -30,7 +30,7 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border !scrollbar-thin !scrollbar-track-transparent !scrollbar-thumb-primary;
   }
   body {
     @apply bg-background text-foreground;

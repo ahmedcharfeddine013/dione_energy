@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { FormEvent, useEffect, useRef, useState } from "react";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import gsap from "gsap";
 import { Input } from "../ui/input";
@@ -41,7 +41,8 @@ const ChatBot = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const sendUserMessage = () => {
+  const sendUserMessage = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (userInput) {
       const newMessages = [
         ...messages,
@@ -91,7 +92,7 @@ const ChatBot = () => {
         }`}
       >
         <div className="bg-primary w-full flex flex-col p-4">
-          <h1 className="font-bold text-xl">Dione</h1>
+          <h1 className="font-bold text-xl">Energyhive</h1>
           <p>customer service</p>
         </div>
         <div className="p-4 text-gray-900">
@@ -126,17 +127,19 @@ const ChatBot = () => {
             ))}
             <div ref={messagesEndRef}></div>
           </div>
-          <div className=" flex items-center justify-center gap-3">
+          <form
+            className=" flex items-center justify-center gap-3"
+            onSubmit={sendUserMessage}
+          >
             <Input
               onChange={(e) => setUserInput(e.target.value)}
               value={userInput || ""}
               className="bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-2 rounded-lg border-primary"
             />
-            <SendHorizontal
-              onClick={sendUserMessage}
-              className="text-primary hover:scale-125 transition-all duration-100 ease-in cursor-pointer"
-            />
-          </div>
+            <button type="submit">
+              <SendHorizontal className="text-primary hover:scale-125 transition-all duration-100 ease-in cursor-pointer" />
+            </button>
+          </form>
         </div>
       </div>
     </>
