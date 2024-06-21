@@ -15,7 +15,7 @@ const AboutPage = () => {
   }, []);
   return (
     <div className="grid grid-cols-1 md:grid-cols-2">
-      <div className="font-extralight text-sm">
+      <div className="text-sm font-[200]">
         <p>
           We propose the development of a Solar State Prediction System designed
           to maximize energy production and optimize energy sales for users.
