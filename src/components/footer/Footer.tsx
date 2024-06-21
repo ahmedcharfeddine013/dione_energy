@@ -5,10 +5,10 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="p-20 border-t-2">
+    <footer className="p-10 border-t-2">
       <div className="grid grid-cols-2 place-items-center md:place-items-start gap-6 md:grid-cols-4 ">
         <div>
-          <Image src={logo} alt="Energyhive" width={150} height={150} />
+          <Image src={logo} alt="Energyhive" width={120} height={120} />
         </div>
         <div>
           <h1>Energyhive</h1>

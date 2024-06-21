@@ -12,6 +12,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Dione",
   description: "Energy",
+  icons : '/public/l.png'
 };
 
 export default function RootLayout({

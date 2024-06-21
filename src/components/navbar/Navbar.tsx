@@ -19,7 +19,7 @@ const Navbar = () => {
   return (
     <nav
       id="navbar"
-      className="bg-background fixed top-0 -translate-y-10 opacity-0 w-full text-white p-4 border-b-2"
+      className="bg-background z-50 fixed top-0 -translate-y-10 opacity-0 w-full text-white p-4 border-b-2"
     >
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center space-x-12">
@@ -52,6 +52,12 @@ const Navbar = () => {
               className="text-white/80 hover:text-white duration-100 transition-all ease-in text-sm"
             >
               Energyhive
+            </Link>
+            <Link
+              href="/contact"
+              className="text-white/80 hover:text-white duration-100 transition-all ease-in text-sm"
+            >
+              Contact Us
             </Link>
             <Link
               href="/blog"
@@ -93,6 +99,12 @@ const Navbar = () => {
               className="hover:bg-gray-700 p-2 rounded text-sm"
             >
               Energyhive
+            </Link>
+            <Link
+              href="/contact"
+              className="hover:bg-gray-700 p-2 rounded text-sm"
+            >
+              Contact Us
             </Link>
             <Link
               href="/blog"
