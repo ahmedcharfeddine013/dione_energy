@@ -31,12 +31,6 @@ const Navbar = () => {
             >
               Blog
             </Link>
-            <Link
-              href="/documentation"
-              className="text-white/80 hover:text-white duration-100 transition-all ease-in text-sm"
-            >
-              Documentation
-            </Link>
           </div>
         </div>
         <div className="flex items-center space-x-4">
@@ -54,20 +48,23 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden mt-4 bg-background rounded-lg shadow-lg">
           <div className="flex flex-col space-y-2 p-4">
-            <Link href="/features" className="hover:bg-gray-700 p-2 rounded text-sm">
-              Features
-            </Link>
-            <Link href="/pricing" className="hover:bg-gray-700 p-2 rounded text-sm">
-              Pricing
-            </Link>
-            <Link href="/blog" className="hover:bg-gray-700 p-2 rounded text-sm">
-              Blog
-            </Link>
             <Link
-              href="/documentation"
+              href="/features"
               className="hover:bg-gray-700 p-2 rounded text-sm"
             >
-              Documentation
+              Features
+            </Link>
+            <Link
+              href="/pricing"
+              className="hover:bg-gray-700 p-2 rounded text-sm"
+            >
+              Pricing
+            </Link>
+            <Link
+              href="/blog"
+              className="hover:bg-gray-700 p-2 rounded text-sm"
+            >
+              Blog
             </Link>
           </div>
           <div className="flex flex-col space-y-2 p-4 border-t border-gray-700">
