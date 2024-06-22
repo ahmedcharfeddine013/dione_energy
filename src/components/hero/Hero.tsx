@@ -38,18 +38,19 @@ const Hero = () => {
             className="font-bold mx-20 border-2 p-3 rounded-lg bg-gray-800/60 opacity-0 translate-y-20 "
           >
             <h1 className="text-4xl md:text-6xl text-center">
-              <span className="text-primary">Energyhive: </span>
+              <span className="text-orange-400">Energyhive: </span>
               Innovating Today for a Sustainable Tomorrow.
             </h1>
           </div>
           <Button
             id="hero_button"
-            className="text-xl bg-background/80 px-10 py-8 opacity-0 translate-x-20"
+            className="text-xl bg-background/80 hover:bg-background px-10 py-8 opacity-0 translate-x-20"
           >
             <Link href={"/auth/sign-up"}>Get started</Link>
           </Button>
         </div>
       </div>
+      <div className="absolute bottom-0 bg-gradient-to-t z-[-30] from-background to-transparent h-[100%] w-full"></div>
     </section>
   );
 };
