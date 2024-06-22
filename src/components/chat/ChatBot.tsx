@@ -69,7 +69,7 @@ const ChatBot = () => {
               message: botResponse,
             },
           ]);
-          console.log(chatbotMessages);
+          console.log(messages);
         }, 1000); // 1 second delay for the typing animation
       }
     }
