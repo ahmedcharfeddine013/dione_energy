@@ -17,7 +17,6 @@ import { useForm } from "react-hook-form";
 import Social from "./Social";
 import { LoginSchema } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
-// import { Login } from "@/lib/actions/auth";
 import { Label } from "../ui/label";
 import { useAuth } from "@/context/AuthContext";
 
@@ -39,24 +38,6 @@ const LoginForm = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof LoginSchema>) => {
-    setError("");
-    setSuccess("");
-    startTransition(() => {
-      // Login(values)
-      //   .then((data) => {
-      //     if (data?.error) {
-      //       form.reset();
-      //       setError(data.error);
-      //     }
-      //     if (data?.success) {
-      //       form.reset();
-      //       setSuccess(data.success);
-      //     }
-      //   })
-      //   .catch(() => setError("Something went wrong!"));
-    });
-  };
   return (
     <div>
       <div className="flex flex-col items-center justify-center p-6 md:p-12 gap-6 border-2 rounded-xl">
