@@ -5,15 +5,17 @@ import { useRouter } from "next/navigation";
 import React, { ReactNode, useEffect } from "react";
 
 const ProtectedLayout = ({ children }: { children: ReactNode }) => {
-  const { isAuthenticated } = useAuth();
-  const router = useRouter();
+  // const { isAuthenticated } = useAuth();
+  // const router = useRouter();
 
-  useEffect(() => {
-    if (!isAuthenticated) {
-      router.push("/auth/sign-in");
-    }
-  }, [isAuthenticated, router]);
-  return <div></div>;
+  // useEffect(() => {
+  //   if (!isAuthenticated) {
+  //     router.push("/auth/sign-in");
+  //   }
+  // }, [isAuthenticated, router]);
+  return <div>
+    {children}
+  </div>;
 };
 
 export default ProtectedLayout;
